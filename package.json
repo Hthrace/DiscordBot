@@ -1,0 +1,16 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "Discord moderation bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "!test"
+  },
+  "author": "Hailey Thrace",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.12.1"
+  }
+}
