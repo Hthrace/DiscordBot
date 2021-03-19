@@ -15,15 +15,13 @@ module.exports = {
             } else {
                 userTarget = argsArry[1];
             }
-            console.log(statement)
+
             if (commandsDefined[argsArry[0].slice(1)] !== undefined) {
                 return argsValidated = {
-                    command: argsArry[0],
-                    userTarget: userTarget,
+                    command: argsArry[0].slice(1),
+                    user: userTarget,
                     statement: statement,
                 }
-            } else {
-                return msg.channel.send(`${argsArry[0]} is not a valid command!`)
             }
 
         } catch (err) {

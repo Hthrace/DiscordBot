@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const { client } = require("./config/discordClient")
 const argsHandler = require("./bin/argsHandler");
 const { argsFinder, comandPrefixValid } = argsHandler
+const userValidation = require("./bin/userValidation");
+const { userValid } = userValidation;
+const record = require("./commands/moderation/records");
+const { records } = record
 
 mongoose.connect('mongodb://localhost/DiscordBot', {
     useNewUrlParser: true,
@@ -21,16 +25,11 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-
-//!msg.member.roles.cache.has('333424099097444352')
-
-client.on('message',  async msg => {
+client.on('message', async msg => {
     try {
         if (!msg.author.bot && comandPrefixValid(msg) === "$") {
-            args = await argsFinder(msg);
-            console.log(args)
-           
-        }   
+            userValid(await argsFinder(msg), msg);
+        }
     } catch (err) {
         return
     }

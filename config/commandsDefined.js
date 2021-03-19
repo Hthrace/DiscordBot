@@ -5,7 +5,8 @@ commandsDefined = {
     mutetext: "muteText",
     mutevoice: "mutevoice",
     kick: "kick",
-    ban: "ban"
+    ban: "ban",
+    commands: "commands"
 }
 
 module.exports = {commandsDefined};
