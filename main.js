@@ -28,7 +28,7 @@ client.on('ready', () => {
 client.on('message', async msg => {
     try {
         if (!msg.author.bot && comandPrefixValid(msg) === "$") {
-            userValid(await argsFinder(msg), msg);
+            userValid(argsFinder(msg), msg);
         }
     } catch (err) {
         return

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     discordId: String,
     username: String,
-    profilePic: String,
+    avatar: String,
     creationDate: String,
     isModerated: Boolean,
     isBanned: Boolean,
