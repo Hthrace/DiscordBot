@@ -7,13 +7,14 @@ const { commands } = help;
 module.exports = {
     userValid: async (args, msg) => {
         try {
-            if (msg.client.users.cache.get(args.user) !== undefined || eval(args.command) === commands) {
+            userCheck = await client.users.fetch(args.user)
+            if (userCheck !== "Cannot send an empty message" || eval(args.command) === commands) {
                 return eval(args.command)(args.user, msg);
             } else {
                 return msg.channel.send("A valid user was not supplied, try again!");
             }
         } catch (err) {
-            return;
+            return msg.channel.send("A valid user was not supplied, try again!");
         }
     }
 }

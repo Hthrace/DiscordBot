@@ -12,9 +12,9 @@ module.exports = {
     userFind: async (userId, msg) => {
         try {
             const userData = await user.findOne({ discordId: userId }).populate("kick").populate("mutetext").populate("mutevoice").populate("warning").populate("ban");
-            const discordData = msg.client.users.cache.get(userId);
+            const discordData = await client.users.fetch(userId);
 
-            if (userData === null) {
+             if (userData === null) {
                 newUser = {
                     discordId: discordData.id,
                     username: discordData.username,
@@ -31,7 +31,7 @@ module.exports = {
             } else {
                 const userRecords = userUpdate(userId, userData.isPfpRemoved, msg);
                 return userRecords;
-            }
+            } 
         } catch (err) {
             return;
         }
