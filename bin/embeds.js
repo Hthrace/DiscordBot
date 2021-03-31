@@ -1,39 +1,56 @@
-const userRecords = require("../database/userRecords");
-
+const { client } = require("../config/discordClient");
 
 module.exports = {
-    userRecordsEmbeds: () => {
+    userRecordsEmbeds: (userData) => {
         try {
+            if (!userData.isModerated) {
+                return {
+                    color: 0x0099ff,
 
-            const userRecordsEmbed = {
-                color: 0x0099ff,
+                    title: "**__Moderation Actions__**",
 
-                title: 'Some title',
+                    author: {
+                        name: `${userData.username} || ${userData.discordId}`,
+                    },
 
-                url: 'https://discord.js.org',
+                    description: 'No moderation actions.........so far.',
+                    thumbnail: {
+                        url: userData.avatar,
+                    },
 
-                author: { name: 'Some name' },
+                    timestamp: new Date(),
 
-                description: 'Moderation Actions',
+                    footer: {
+                        text: "Records requested ",
+                        //Server icon is a placeholder till I decide what image to go here.
+                        icon_url: client.guilds.cache.get("282786877847764992").iconURL(),
+                    },
+                };
+            } else {
+                return {
+                    color: 0x0099ff,
 
-                thumbnail: {
-                    url: 'https://i.imgur.com/wSTFkRM.png',
-                },
+                    title: "**__Moderation Actions__**",
 
-                //fields: [],
+                    author: {
+                        name: `${userData.username} || ${userData.discordId}`,
+                    },
 
-                image: {
-                    url: 'https://i.imgur.com/wSTFkRM.png',
-                },
+                    thumbnail: {
+                        url: userData.avatar,
+                    },
 
-                timestamp: new Date(),
+                    //fields: [],
 
-                footer: {
-                    text: 'Some footer text here',
-                    icon_url: 'https://i.imgur.com/wSTFkRM.png',
-                },
-            };
-            return userRecordsEmbed;
+                    timestamp: new Date(),
+
+                    footer: {
+                        text: "Records requested at ",
+                        icon_url: client.guilds.cache.get("282786877847764992").iconURL(),
+                    },
+                };
+            }
+
         } catch (err) {
             return;
         }

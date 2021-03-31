@@ -18,7 +18,7 @@ module.exports = {
                 newUser = {
                     discordId: discordData.id,
                     username: discordData.username,
-                    avatar: discordData.avatar,
+                    avatar: `https://cdn.discordapp.com/avatars/${discordData.id}/${discordData.avatar}.webp`,
                     creationDate: new Date(),
                     isModerated: false,
                     isBanned: false,
@@ -29,8 +29,7 @@ module.exports = {
                 const newUserRecords = await user.create(newUser);
                 return newUserRecords;
             } else {
-                const userRecords = userUpdate(userId, userData.isPfpRemoved, msg);
-                return userRecords;
+                return userUpdate(userId, userData.isPfpRemoved, msg);
             } 
         } catch (err) {
             return;

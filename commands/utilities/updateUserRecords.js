@@ -9,7 +9,7 @@ module.exports = {
             if (pfp) {
                 pfpUpdated = "../../img/bannedImg.jpg";
             } else {
-                pfpUpdated = updatedUserData.avatar
+                pfpUpdated = `https://cdn.discordapp.com/avatars/${userId}/${updatedUserData.avatar}.webp`
             }
 
             updatedRecords = {
@@ -17,7 +17,7 @@ module.exports = {
                 avatar: pfpUpdated,
             }
 
-           currentRecords = await user.findOneAndUpdate({ discordId: userId }, updatedRecords, {new: true});
+           return currentRecords = await user.findOneAndUpdate({ discordId: userId }, updatedRecords, {new: true});
         } catch (err) {
             return;
         }
