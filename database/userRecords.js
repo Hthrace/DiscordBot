@@ -1,9 +1,4 @@
 const user = require("../models/userSchema");
-const kick = require("../models/kickSchema");
-const mutetext = require("../models/mutetextSchema");
-const mutevoice = require("../models/mutevoiceSchema");
-const warning = require("../models/warningSchema");
-const ban = require("../models/banSchema");
 const { client } = require("../config/discordClient");
 const updateUserRecords = require("../commands/utilities/updateUserRecords");
 const { userUpdate } = updateUserRecords;
@@ -11,10 +6,9 @@ const { userUpdate } = updateUserRecords;
 module.exports = {
     userFind: async (userId, msg) => {
         try {
-            const userData = await user.findOne({ discordId: userId }).populate("kick").populate("mutetext").populate("mutevoice").populate("warning").populate("ban");
+            const userData = await user.findOne({ discordId: userId })
             const discordData = await client.users.fetch(userId);
-
-             if (userData === null) {
+            if (userData === null) {
                 newUser = {
                     discordId: discordData.id,
                     username: discordData.username,
@@ -29,8 +23,8 @@ module.exports = {
                 const newUserRecords = await user.create(newUser);
                 return newUserRecords;
             } else {
-                return userUpdate(userId, userData.isPfpRemoved, msg);
-            } 
+                return await userUpdate(userId, userData.isPfpRemoved, msg);
+            }
         } catch (err) {
             return;
         }

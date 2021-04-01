@@ -1,6 +1,6 @@
 const { client } = require("../config/discordClient")
-const record = require("../commands/moderation/records");
-const { records } = record;
+const { records } = require("../commands/moderation/records");
+const { warn } = require("../commands/moderation/warning")
 const help = require("../commands/utilities/help");
 const { commands } = help;
 
@@ -9,12 +9,12 @@ module.exports = {
         try {
             userCheck = await client.users.fetch(args.user);
             if (userCheck !== "Cannot send an empty message" || eval(args.command) === commands) {
-                return eval(args.command)(args.user, msg);
+                return eval(args.command)(args.user, msg, args.statement);
             } else {
                 return msg.channel.send("A valid user was not supplied, try again!");
             }
         } catch (err) {
-             return msg.channel.send("A valid user was not supplied, try again!");
+            return msg.channel.send("A valid user was not supplied, try again!");
         }
     }
 }

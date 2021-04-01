@@ -1,5 +1,6 @@
 const { client } = require("../config/discordClient");
 const { commandsDefined } = require("../config/commandsDefined");
+const { userValid } = require("./userValidation");
 
 module.exports = {
     argsFinder: (msg) => {
@@ -16,12 +17,15 @@ module.exports = {
                 userTarget = argsArry[1];
             }
 
-            if (commandsDefined[argsArry[0].slice(1)] !== undefined) {
-                return argsValidated = {
+            if (commandsDefined[argsArry[0].slice(1)] === undefined) {
+                return msg.channel.send("A valid command was not supplied, try again!");
+            } else{
+                 const argsValidated = {
                     command: argsArry[0].slice(1),
                     user: userTarget,
                     statement: statement,
-                }
+                };
+                return userValid(argsValidated, msg)
             }
 
         } catch (err) {

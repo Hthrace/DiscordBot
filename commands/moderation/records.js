@@ -5,9 +5,9 @@ const embeds = require("../../bin/embeds");
 const { userRecordsEmbeds } = embeds;
 
 module.exports = {
-    records: async (user, msg) => {
+    records: async (userId, msg) => {
         try {
-            const userData = await userFind(user, msg);
+            const userData = await userFind(userId, msg);
             return msg.channel.send({ embed: userRecordsEmbeds(userData) })
         } catch (err) {
             return;

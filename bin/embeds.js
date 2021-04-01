@@ -13,7 +13,7 @@ module.exports = {
                         name: `${userData.username} || ${userData.discordId}`,
                     },
 
-                    description: 'No moderation actions.........so far.',
+                    description: 'No moderation actions.........so far :face_with_raised_eyebrow: ',
                     thumbnail: {
                         url: userData.avatar,
                     },

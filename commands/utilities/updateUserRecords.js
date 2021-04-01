@@ -1,5 +1,10 @@
 const client = require("../../config/discordClient");
 const user = require("../../models/userSchema")
+const kick = require("../../models/kickSchema");
+const mutetext = require("../../models/mutetextSchema");
+const mutevoice = require("../../models/mutevoiceSchema");
+const warning = require("../../models/warningSchema");
+const ban = require("../../models/banSchema");
 
 module.exports = {
     userUpdate: async (userId, pfp, msg) => {
@@ -17,7 +22,8 @@ module.exports = {
                 avatar: pfpUpdated,
             }
 
-           return currentRecords = await user.findOneAndUpdate({ discordId: userId }, updatedRecords, {new: true});
+            return await user.findOneAndUpdate({ discordId: userId }, updatedRecords, { new: true }).populate("kick").populate("mutetext").populate("mutevoice").populate("warning").populate("ban");
+
         } catch (err) {
             return;
         }
