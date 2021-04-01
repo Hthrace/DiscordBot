@@ -2,7 +2,7 @@ const { client } = require("../../config/discordClient")
 const findUser = require("../../database/userRecords");
 const { userFind } = findUser;
 const embeds = require("../../bin/embeds");
-const { userRecordsEmbeds } = embeds;
+const { userRecordsEmbeds, modActionConfirm } = embeds;
 const warning = require("../../models/warningSchema");
 
 module.exports = {
@@ -14,17 +14,17 @@ module.exports = {
                 const userData = await userFind(userId, msg);
                 newWarning = {
                     discordId: userData.discordId,
+                    action: "Warning",
                     reason: statement,
                     authorId: msg.author.id,
                     actionDate: new Date(),
                 };
 
-                await warning.create(newWarning,(err, warningData)=>{
-                    userData.warnings.push(warningData);
-                    userData.isModerated = true;
-                    return userData.save();
-                });
-                return;
+                warningData = await warning.create(newWarning);
+                userData.warnings.push(warningData);
+                userData.isModerated = true;
+                userData.save();
+                msg.channel.send({ embed: modActionConfirm(warningData) })
             }
         } catch (err) {
             return;

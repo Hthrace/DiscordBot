@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const kickSchema = new mongoose.Schema({
     discordId: String,
+    action: String,
     reason: String,
-    authorId: Number,
+    authorId: String,
     actionDate: String,
 });
 module.exports = mongoose.model("kickvoice", kickSchema);

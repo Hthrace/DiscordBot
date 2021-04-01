@@ -54,5 +54,33 @@ module.exports = {
         } catch (err) {
             return;
         }
+    },
+    modActionConfirm: (warningData) => {
+        try {
+            return {
+                color: 0x0099ff,
+
+                title: `**__${warningData.action} Successful__**`,
+                
+                description: `${warningData.action} issued by <@${warningData.authorId}> to <@${warningData.discordId}>.`,
+
+                //Need to add logic for different action confirmations to the field section.
+
+                fields: [
+                    {
+                        name: "Reason",
+                        value: `${warningData.reason}`
+                    }
+                ],
+
+                timestamp: new Date(),
+
+                footer: {
+                    text: "Action completed",
+                },
+            };
+        } catch (err) {
+            return;
+        }
     }
 }

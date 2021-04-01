@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const mutevoiceSchema = new mongoose.Schema({
     discordId: String,
+    action: String,
     reason: String,
-    authorId: Number,
+    authorId: String,
     actionDate: String,
     unmuteDate: String,
     earlyUnmuteReason: String,

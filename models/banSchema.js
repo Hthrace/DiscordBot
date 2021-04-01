@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const banSchema = new mongoose.Schema({
     discordId: String,
+    action: String,
     reason: String,
-    authorId: Number,
+    authorId: String,
     actionDate: String,
     unbanDate: String,
     earlyUnbanReason: String,
