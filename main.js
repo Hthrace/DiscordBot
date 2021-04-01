@@ -37,7 +37,6 @@ client.on('message', async msg => {
             return argsFinder(msg);
         }
     } catch (err) {
-        console.log(err)
-        return
+        return;
     }
 });

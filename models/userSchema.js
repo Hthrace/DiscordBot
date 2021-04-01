@@ -6,11 +6,11 @@ const userSchema = new mongoose.Schema({
     avatar: String,
     creationDate: String,
     isModerated: Boolean,
+    lastModerated: String,
     isBanned: Boolean,
     isMutedVoice: Boolean,
     isMutedText: Boolean,
     isPfpRemoved: Boolean,
-    lastModeration: String,
     warnings: [
         {
             type: mongoose.Schema.Types.ObjectId,

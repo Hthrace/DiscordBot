@@ -23,8 +23,9 @@ module.exports = {
                 warningData = await warning.create(newWarning);
                 userData.warnings.push(warningData);
                 userData.isModerated = true;
+                userData.lastModerated = new Date().getTime();
                 userData.save();
-                msg.channel.send({ embed: modActionConfirm(warningData) })
+                return msg.channel.send({ embed: modActionConfirm(warningData) })
             }
         } catch (err) {
             return;
