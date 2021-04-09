@@ -3,7 +3,9 @@ const findUser = require("../../database/userRecords");
 const { userFind } = findUser;
 const embeds = require("../../bin/embeds");
 const { userRecordsEmbeds, modActionConfirm } = embeds;
-const warning = require("../../models/warningSchema");
+//const warnings = require("../../models/warningSchema")
+const actions = require("../../database/actions");
+const { actionHandler } = actions;
 
 module.exports = {
     warn: async (userId, msg, statement) => {
@@ -20,11 +22,8 @@ module.exports = {
                     actionDate: new Date(),
                 };
 
-                warningData = await warning.create(newWarning);
-                userData.warnings.push(warningData);
-                userData.isModerated = true;
-                userData.lastModerated = new Date().getTime();
-                userData.save();
+                const warningData = await actionHandler(userData, "warnings", newWarning, msg);
+
                 return msg.channel.send({ embed: modActionConfirm(warningData) })
             }
         } catch (err) {
