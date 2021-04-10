@@ -22,7 +22,7 @@ module.exports = {
                 avatar: pfpUpdated,
             }
 
-            return await user.findOneAndUpdate({ discordId: userId }, updatedRecords, { new: true }).populate("kick").populate("mutetext").populate("mutevoice").populate("warning").populate("ban");
+            return await user.findOneAndUpdate({ discordId: userId }, updatedRecords, { new: true }).populate("bans").populate("warnings").populate("muteText").populate("muteVoice").populate("kick");
 
         } catch (err) {
             return;

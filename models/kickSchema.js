@@ -7,4 +7,4 @@ const kickSchema = new mongoose.Schema({
     authorId: String,
     actionDate: String,
 });
-module.exports = mongoose.model("kickvoice", kickSchema);
+module.exports = mongoose.model("Kick", kickSchema);

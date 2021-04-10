@@ -11,38 +11,38 @@ const userSchema = new mongoose.Schema({
     isMutedVoice: Boolean,
     isMutedText: Boolean,
     isPfpRemoved: Boolean,
-    warnings: [
+    bans: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "warning"
+            ref: "Ban"
 
         }
     ],
     warnings: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "warning"
+            ref: "Warning"
 
         }
     ],
     muteText: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "muteText"
+            ref: "Mutetext"
 
         }
     ],
     muteVoice: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "muteVoice"
+            ref: "Mutevoice"
 
         }
     ],
     kicks: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "kick"
+            ref: "Kick"
 
         }
     ],
