@@ -1,4 +1,5 @@
 const { client } = require("../config/discordClient");
+const { fieldEmbed } = require("../bin/fieldEmbedHandler");
 
 module.exports = {
     userRecordsEmbeds: (userData) => {
@@ -40,7 +41,27 @@ module.exports = {
                         url: userData.avatar,
                     },
 
-                    //fields: [],
+                    fields: [{
+                        name: `Warnings: ${userData.warnings.length}`,
+                        value: `${fieldEmbed(userData.warnings)}`
+                    },
+                    {
+                        name: `Kicks: ${userData.kicks.length}`,
+                        value: `${fieldEmbed(userData.kicks)}`
+                    },
+                    {
+                        name: `MuteText: ${userData.muteText.length}`,
+                        value: `${fieldEmbed(userData.muteText)}`
+                    },
+                    {
+                        name: `MuteVoice: ${userData.muteVoice.length}`,
+                        value: `${fieldEmbed(userData.muteVoice)}`
+                    },
+                    {
+                        name: `Bans: ${userData.bans.length}`,
+                        value: `${fieldEmbed(userData.bans)}`
+                    }
+                    ],
 
                     timestamp: new Date(),
 
@@ -61,7 +82,7 @@ module.exports = {
                 color: 0x0099ff,
 
                 title: `**__${warningData.action} Successful__**`,
-                
+
                 description: `${warningData.action} issued by <@${warningData.authorId}> to <@${warningData.discordId}>.`,
 
                 //Need to add logic for different action confirmations to the field section.
