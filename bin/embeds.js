@@ -1,5 +1,5 @@
 const { client } = require("../config/discordClient");
-const { fieldEmbed } = require("../bin/fieldEmbedHandler");
+const { fieldValueEmbed, fieldNameEmbed } = require("../bin/fieldEmbedHandler");
 
 module.exports = {
     userRecordsEmbeds: (userData) => {
@@ -28,6 +28,7 @@ module.exports = {
                     },
                 };
             } else {
+                fieldData = [fieldValueEmbed(userData.warnings, "Warnings"), fieldValueEmbed(userData.kicks, "Kicks"), fieldValueEmbed(userData.muteText, "MuteText"), fieldValueEmbed(userData.muteVoice, "MuteVoice"), fieldValueEmbed(userData.bans, "Bans")];
                 return {
                     color: 0x0099ff,
 
@@ -41,27 +42,7 @@ module.exports = {
                         url: userData.avatar,
                     },
 
-                    fields: [{
-                        name: `Warnings: ${userData.warnings.length}`,
-                        value: `${fieldEmbed(userData.warnings)}`
-                    },
-                    {
-                        name: `Kicks: ${userData.kicks.length}`,
-                        value: `${fieldEmbed(userData.kicks)}`
-                    },
-                    {
-                        name: `MuteText: ${userData.muteText.length}`,
-                        value: `${fieldEmbed(userData.muteText)}`
-                    },
-                    {
-                        name: `MuteVoice: ${userData.muteVoice.length}`,
-                        value: `${fieldEmbed(userData.muteVoice)}`
-                    },
-                    {
-                        name: `Bans: ${userData.bans.length}`,
-                        value: `${fieldEmbed(userData.bans)}`
-                    }
-                    ],
+                    fields: fieldData,
 
                     timestamp: new Date(),
 
