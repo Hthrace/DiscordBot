@@ -9,7 +9,8 @@ module.exports = {
             } else {
                 fieldData = [];
                 modAction.forEach((val) => {
-                    fieldData.push(`\n[${val._id}] Date -- <@${val.authorId}> -- ${eval(time)} ${val.reason}`);
+                    const date = new Date(Number(val.actionDate));
+                    fieldData.push(`\n[${val._id}] ${date.getMonth()}-${date.getDate()}-${date.getFullYear()} -- <@${val.authorId}> -- ${eval(time)} ${val.reason}`);
                 });
                 return {
                     name: `${modActionType}: ${modAction.length}`,

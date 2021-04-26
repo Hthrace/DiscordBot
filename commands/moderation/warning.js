@@ -19,7 +19,7 @@ module.exports = {
                     action: "Warning",
                     reason: statement,
                     authorId: msg.author.id,
-                    actionDate: new Date(),
+                    actionDate: new Date().getTime(),
                 };
 
                 const warningData = await actionHandler(userData, "warnings", newWarning, msg);
