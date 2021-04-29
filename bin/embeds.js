@@ -1,5 +1,6 @@
 const { client } = require("../config/discordClient");
 const { fieldValueEmbed } = require("../bin/fieldEmbedHandler");
+const { timeInterval } = require("../bin/timeHandler");
 
 module.exports = {
     userRecordsEmbeds: (userData) => {
@@ -28,7 +29,16 @@ module.exports = {
                     },
                 };
             } else {
-                fieldData = [fieldValueEmbed(userData.warnings, "Warnings"), fieldValueEmbed(userData.kicks, "Kicks"), fieldValueEmbed(userData.muteText, "MuteText"), fieldValueEmbed(userData.muteVoice, "MuteVoice"), fieldValueEmbed(userData.bans, "Bans")];
+                fieldData = [fieldValueEmbed(userData.warnings, "Warnings"), fieldValueEmbed(userData.kicks, "Kicks"), fieldValueEmbed(userData.muteText, "MuteText"), fieldValueEmbed(userData.muteVoice, "MuteVoice"), fieldValueEmbed(userData.bans, "Bans"), {
+                    name: 'Joined Server',
+                    value: 'This needs to be added!',
+                    inline: true,
+                }, 
+                {
+                    name: 'Time Since Moderation:',
+                    value: timeInterval(Number(userData.lastModerated)),
+                    inline: true,
+                }];
                 return {
                     color: 0x0099ff,
 

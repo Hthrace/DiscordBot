@@ -9,6 +9,7 @@
   "author": "Hailey Thrace",
   "license": "MIT",
   "dependencies": {
+    "date-fns": "^2.21.1",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "mongoose": "^5.12.1"
