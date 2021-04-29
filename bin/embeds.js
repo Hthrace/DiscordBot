@@ -1,5 +1,5 @@
 const { client } = require("../config/discordClient");
-const { fieldValueEmbed, fieldNameEmbed } = require("../bin/fieldEmbedHandler");
+const { fieldValueEmbed } = require("../bin/fieldEmbedHandler");
 
 module.exports = {
     userRecordsEmbeds: (userData) => {

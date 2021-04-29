@@ -3,7 +3,6 @@ const findUser = require("../../database/userRecords");
 const { userFind } = findUser;
 const embeds = require("../../bin/embeds");
 const { userRecordsEmbeds, modActionConfirm } = embeds;
-//const warnings = require("../../models/warningSchema")
 const actions = require("../../database/actions");
 const { actionHandler } = actions;
 

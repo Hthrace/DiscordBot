@@ -1,4 +1,4 @@
-//Need to replace date with proper action date once date handler function is implemented
+
 
 module.exports = {
     fieldValueEmbed: (modAction, modActionType, time = "blank") => {
