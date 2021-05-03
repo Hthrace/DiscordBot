@@ -1,4 +1,4 @@
-
+const dateFns = require("date-fns");
 
 module.exports = {
     fieldValueEmbed: (modAction, modActionType, time = "blank") => {
@@ -9,8 +9,7 @@ module.exports = {
             } else {
                 fieldData = [];
                 modAction.forEach((val) => {
-                    const date = new Date(Number(val.actionDate));
-                    fieldData.push(`\n[${val._id}] ${date.getMonth()}-${date.getDate()}-${date.getFullYear()} -- <@${val.authorId}> -- ${eval(time)} ${val.reason}`);
+                    fieldData.push(`\n[${val._id}] ${dateFns.format(new Date(Number(val.actionDate)), 'MM-dd-yyyy')} -- ${eval(time)} ${val.reason}`);
                 });
                 return {
                     name: `${modActionType}: ${modAction.length}`,
@@ -18,6 +17,7 @@ module.exports = {
                 };
             }
         } catch (err) {
+            console.log(err)
             return;
         }
     },

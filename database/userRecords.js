@@ -13,7 +13,7 @@ module.exports = {
                     discordId: discordData.id,
                     username: discordData.username,
                     avatar: `https://cdn.discordapp.com/avatars/${discordData.id}/${discordData.avatar}.webp`,
-                    creationDate: new Date(),
+                    creationDate: new Date().getTime(),
                     isModerated: false,
                     isBanned: false,
                     isMutedVoice: false,

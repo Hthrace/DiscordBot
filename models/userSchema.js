@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     discordId: String,
     username: String,
     avatar: String,
-    creationDate: String,
+    serverJoinDate: String,
     isModerated: Boolean,
     lastModerated: String,
     isBanned: Boolean,
