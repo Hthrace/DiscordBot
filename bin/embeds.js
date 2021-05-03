@@ -67,21 +67,21 @@ module.exports = {
             return;
         }
     },
-    modActionConfirm: (warningData) => {
+    modActionConfirm: (actionData) => {
         try {
             return {
                 color: 0x0099ff,
 
-                title: `**__${warningData.action} Successful__**`,
+                title: `**__${actionData.action} Successful__**`,
 
-                description: `${warningData.action} issued by <@${warningData.authorId}> to <@${warningData.discordId}>.`,
+                description: `${actionData.action} issued by <@${actionData.authorId}> to <@${actionData.discordId}>.`,
 
                 //Need to add logic for different action confirmations to the field section.
 
                 fields: [
                     {
                         name: "Reason",
-                        value: `${warningData.reason}`
+                        value: `${actionData.reason}`
                     }
                 ],
 
