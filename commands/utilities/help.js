@@ -2,6 +2,6 @@
 
 module.exports = {
     commands: async()=>{
-        console.log("Commands avaible");
+        console.log("Commands available: $Records, $Warn, $Kick");
     }
 }
