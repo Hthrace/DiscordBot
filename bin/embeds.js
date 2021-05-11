@@ -1,6 +1,6 @@
 const { client } = require("../config/discordClient");
 const { fieldValueEmbed } = require("../bin/fieldEmbedHandler");
-const { timeInterval } = require("../bin/timeHandler");
+const { timeInterval } = require("./timeEmbedHandler");
 
 module.exports = {
     userRecordsEmbeds: (userData) => {

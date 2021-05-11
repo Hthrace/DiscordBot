@@ -1,7 +1,7 @@
 const { client } = require("../config/discordClient");
 const { commandsDefined } = require("../config/commandsDefined");
 const { userValid } = require("./userValidation");
-
+//Need change args to lower case.
 module.exports = {
     argsFinder: (msg) => {
         try {
@@ -18,6 +18,7 @@ module.exports = {
             }
 
             if (commandsDefined[argsArry[0].slice(1)] === undefined) {
+                console.log(commandsDefined[argsArry[0].slice(1)])
                 return msg.channel.send("A valid command was not supplied, try again!");
             } else{
                  const argsValidated = {

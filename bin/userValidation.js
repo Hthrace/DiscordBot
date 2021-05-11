@@ -2,6 +2,7 @@ const { client } = require("../config/discordClient");
 const { records } = require("../commands/moderation/records");
 const { warn } = require("../commands/moderation/warning");
 const { kick } = require("../commands/moderation/kick");
+const { mutevoice } = require("../commands/moderation/muteVoice")
 const help = require("../commands/utilities/help");
 const { commands } = help;
 
