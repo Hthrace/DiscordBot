@@ -22,6 +22,8 @@ module.exports = {
 
                 let newDate;
 
+                /* I tried to find alternative way of passing the unit of time used in dateFns options. So far this is the best working solution I have. If I find a alternative in future I will update, please feel free to let me know of a better option. */
+                
                 switch (argUnit) {
                     case "min":
                     case "mins":
