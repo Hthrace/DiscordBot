@@ -4,26 +4,35 @@ module.exports = {
     timeParse: (statement, msg) => {
         try {
             args = statement.split(" ").filter((arry) => { return arry });
+
             if (args.length < 2) {
-                return 0;
+                return msg.channel.send("A mute voice reason was not supplied, try again!");
+            };
+
+            timeArgs = args[0].split("");
+            durationTime = [];
+            unitTime = [];
+
+            timeArgs.forEach((val) => {
+                if (isNaN(val)) {
+                    return unitTime.push(val);
+                } else {
+                    return durationTime.push(val);
+                }
+            });
+
+            if(durationTime.join("") <= 0){
+                return msg.channel.send("Duration time must be greater than zero!");
+            }
+
+            /* I tried to find alternative way of passing the unit of time used in dateFns options. So far this is the best working solution I have. If I find a alternative in future I will update, please feel free to let me know of a better option. */
+            
+            argUnit = unitTime.join("")
+
+            if (argUnit === "perma" || argUnit === "perm") {
+                return -1;
             } else {
-                timeArgs = args[0].split("");
-                durationTime = [];
-                unitTime = [];
-
-                timeArgs.forEach((val) => {
-                    if (isNaN(val)) {
-                        return unitTime.push(val);
-                    } else {
-                        return durationTime.push(val);
-                    }
-                });
-                argUnit = unitTime.join("")
-
                 let newDate;
-
-                /* I tried to find alternative way of passing the unit of time used in dateFns options. So far this is the best working solution I have. If I find a alternative in future I will update, please feel free to let me know of a better option. */
-                
                 switch (argUnit) {
                     case "min":
                     case "mins":
@@ -65,9 +74,8 @@ module.exports = {
 
                 return dateFns.getTime(newDate)
             }
-
         } catch (err) {
-            return console.log(err)
+            return
         }
     }
 }

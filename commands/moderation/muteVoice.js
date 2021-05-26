@@ -10,17 +10,13 @@ const { timeParse } = require("../../bin/actionTimeHandler")
 module.exports = {
     mutevoice: async (userId, msg, statement) => {
         try {
-            muteVoiceDuration = timeParse(statement, msg)
-            if (muteVoiceDuration === 0) {
-                return msg.channel.send("A mute voice reason was not supplied, try again!");
-            }
+            muteVoiceDuration = await timeParse(statement, msg)
             if(!muteVoiceDuration){
                 return msg.channel.send("A valid mute voice duration was not supplied, try again!");
             }
-            console.log(muteVoiceDuration);
+            console.log(muteVoiceDuration)
             return 
         } catch (err) {
-            console.log(err)
             return;
         }
     }
