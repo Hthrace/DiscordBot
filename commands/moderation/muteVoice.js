@@ -8,16 +8,32 @@ const { actionHandler } = actions;
 const { timeParse } = require("../../bin/actionTimeHandler")
 
 module.exports = {
-    mutevoice: async (userId, msg, statement) => {
+    mutevoice: async(userId, msg, statement, next) => {
         try {
-            muteVoiceDuration = await timeParse(statement, msg)
-            if(!muteVoiceDuration){
-                return msg.channel.send("A valid mute voice duration was not supplied, try again!");
+            muteVoiceDuration = timeParse(statement, msg)
+            if (isNaN(muteVoiceDuration)) {
+                return msg.channel.send(muteVoiceDuration);
+            } else {
+                console.log("Works")
+                const userData = await userFind(userId, msg);
+
+                newMuteVoice = {
+                    discordId: userData.discordId,
+                    action: "muteVoice",
+                    reason: statement,
+                    authorId: msg.author.id,
+                    actionDate: new Date().getTime(),
+                };
+
+                const muteVoiceData = await actionHandler(userData, "mutevoice", newMuteVoice, msg);
+
+                const guild = client.guilds.cache.get(msg.guild.id)
+                    ; (await guild.members.fetch(userId)).voice.setMute(true)
+
+                return //msg.channel.send({ embed: modActionConfirm(muteVoiceData) })
             }
-            console.log(muteVoiceDuration)
-            return 
         } catch (err) {
-            return;
+            return
         }
     }
 }

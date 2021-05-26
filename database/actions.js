@@ -1,5 +1,6 @@
 const warnings = require("../models/warningSchema");
-const kicks = require("../models/kickSchema")
+const kicks = require("../models/kickSchema");
+const mutevoice = require("../models/mutevoiceSchema")
 
 module.exports = {
     actionHandler: async (userData, actionType, newAction, msg) => {
